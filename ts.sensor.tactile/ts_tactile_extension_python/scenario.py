@@ -80,7 +80,7 @@ class ExampleScenario(ScenarioTemplate):
         if step_ind <= 100:
             self.sensorBuffer.append(self.sensorFrameData)
         self._time += step
-        print(("current time step: ", step_ind, self.sensorFrameData))
+        # print(("current time step: ", step_ind, self.sensorFrameData))
         self._update_rerun_visualization()
 
     def draw_data(self):
@@ -167,5 +167,5 @@ class ExampleScenario(ScenarioTemplate):
             prim_paths_expr="/World/Tip/pad_[1-7]",
             name="fingertip",
             contact_filter_prim_paths_expr=["/World/Cube1"],
-            max_contact_count= 7 * 10,
+            max_contact_count= 10,
         )

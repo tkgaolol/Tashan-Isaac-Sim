@@ -32,16 +32,24 @@
 ## 使用指南
 在使用TS TACTILE 扩展之前, 建议先使用的Isaac Sim 在线文档 [Extension Template Generator](https://docs.isaacsim.omniverse.nvidia.com/5.0.0/utilities/extension_template_generator.html)，学习了解如何生成和使用扩展。
 
-1. 激活TS TACTILE 扩展
-    在顶部菜单栏中，点击Window -> Extension 显示扩展管理器，在搜素栏中输入"TS TACTILE EXTENSION"搜索扩展，点击ENABLED 开关以激活扩展，在ubuntu22.04 已验证。<br>
-    如果您找不到 TS TACTILE 扩展，那么您可以通过克隆本项目来手动添加它：
+1. 启用TS TACTILE 扩展<br>
+    首先克隆本项目，下载触觉模型资产和扩展内容：
     ```bash
     cd <your_workspace>
     git clone git@github.com:TashanTec/Tashan-Isaac-Sim.git
     ```
-    单击菜单按钮（三个水平条），选择 Settings ，然后在右侧列表中创建一个新目录，添加 your_workspace 文件夹路径。
-    再在搜索栏中搜索 "TS TACTILE EXTENSION"，激活扩展；如果您希望仿真平台启动时加载扩展，点击标记 AUTOLOAD 选项。
+
+    - 通过终端命令行启用扩展
+    ```bash
+    cd <isaacsim>
+    ./isaac-sim.sh --ext-folder <your_workspace>/Tashan-Isaac-Sim/ --enable ts.sensor.tactile
+    ```
+
+    - 通过Isaacsim GUI 启用扩展<br>
+    在顶部菜单栏中，点击Window -> Extension 显示扩展管理器；单击菜单按钮（三个水平条），选择 Settings ，然后在右侧列表中创建一个新目录，添加 <your_workspace>/Tashan-Isaac-Sim 文件夹路径。
+    然后在搜索栏中搜索 "TS TACTILE EXTENSION"，点击ENABLED按钮激活扩展；如果希望仿真平台启动时自动加载扩展，点击标记 AUTOLOAD 选项。
     ![扩展](ts.sensor.tactile/data/ts_tactile_extension.png)<br>
+    上述两种方式在ubuntu22.04 均已验证。
 
 2. 测试 TS TACTILE 扩展：
     - LOAD ：点击LOAD 按钮，加载 TS-F-A 触觉传感器模组及小卡片，并同时启动数据可视化窗口；
@@ -69,6 +77,9 @@ A：主要是网络问题，建议下载资产包到本地，修改配置作为�
 
 2. Q：如何在自己的模型中添加触觉传感器？<br>
 A：先将触觉传感器模组的 usd 文件导入模型中，记住 prim_path路径，在 ts.sensor.tactile/ts_tactile_extension_python/scenario.py 文件中 range_paths 和 _touch 变量中添加路径。
+
+3. Q：启用扩展，点击LOAD，出现"RuntimeError: Failed to find Rerun Viewer executable in PATH."错误<br>
+A：可视化依赖安装不全，激活conda环境，pip install rerun-sdk==0.18.2，重新启动即可。
 
 
 ## 贡献与反馈

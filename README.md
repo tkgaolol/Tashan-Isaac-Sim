@@ -34,16 +34,26 @@ Before using this platform, please ensure your system meets the [Isaac Sim Requi
 ## User Guide
 Before using the TS TACTILE extension, we recommend familiarizing yourself with Isaac Sim documentation on [Extension Template Generator](https://docs.isaacsim.omniverse.nvidia.com/5.0.0/utilities/extension_template_generator.html) to understand how to create and use extensions.
 
-1. Activate TS TACTILE Extension:
-    In the top menu bar, click Window → Extension to open the Extension Manager. Search for "TS TACTILE EXTENSION" in the search bar, then toggle the ENABLED switch to activate the extension, which has been verified on Ubuntu 22.04.<br>
-    If you cannot find the TS TACTILE extension, clone this project manually:
+1. Enable TS TACTILE Extension<br>
+    First clone this project to download tactile model assets and extension file:
     ```bash
     cd <your_workspace>
     git clone git@github.com:TashanTec/Tashan-Isaac-Sim.git
     ```
-    Click the menu button (three horizontal bars), select Settings, create a new directory in the right-hand list, and add your workspace folder path.
-    Then search for "TS TACTILE EXTENSION" and activate it. To load the extension automatically on platform startup, enable the AUTOLOAD option.<br>
-    ![extension](ts.sensor.tactile/data/ts_tactile_extension.png)
+
+    - Enable Extension Terminal Command
+    ```bash
+    cd <isaacsim>
+    ./isaac-sim.sh --ext-folder <your_workspace>/Tashan-Isaac-Sim/ --enable ts.sensor.tactile
+    ```
+
+    - Enable Extension Isaac Sim GUI<br>
+    In the top menu bar, click ​Window → Extensions​ to open Extension Manager;
+    Click the menu button (three horizontal lines), select ​Settings,then create a new directory in the right-hand list and add the <your_workspace>/Tashan-Isaac-Sim folder path.
+    Search for ​​"TS TACTILE EXTENSION"​​ in the search bar, click the ​ENABLED​ button to activate;
+    To auto-load the extension on simulator startup, toggle the ​AUTOLOAD​ option.
+    ![Extension](ts.sensor.tactile/data/ts_tactile_extension.png)<br>
+    Both methods have been verified on Ubuntu 22.04.
 
 
 2. Test TS TACTILE Extension:
@@ -70,6 +80,9 @@ A: Primarily caused by network issues. We recommend downloading asset packs loca
 
 2. Q: How to add tactile sensors to my own model?<br>
 A: First import the tactile sensor module's USD file into your model. Remember the prim_path, Add the path to the range_paths and _touch variables in the ts.sensor.tactile/ts_tactile_extension_python/scenario.py file.
+
+3. Q: After enabling the extension and clicking LOAD, a "RuntimeError: Failed to find Rerun Viewer executable in PATH." error appears<br>
+A: This indicates incomplete visualization dependencies. Activate your conda environment and run pip install rerun-sdk==0.18.2, then restart the application.
 
 
 ## Contribution & Feedback
