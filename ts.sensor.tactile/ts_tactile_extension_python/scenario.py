@@ -52,7 +52,7 @@ class ExampleScenario(ScenarioTemplate):
     def __init__(self):
         self._articulation = None
         self._running_scenario = False
-        self._time = 0.0  # s
+        self._time = 0.0
 
         # add buffer
         self.sensorFrameData = []
@@ -76,7 +76,7 @@ class ExampleScenario(ScenarioTemplate):
 
     def update_scenario(self, step: float, step_ind: int):
         from register_sensor import TSsensor
-        TSsensor(self)
+        self.sensorFrameData = TSsensor(self.tactile, self.range)
         if step_ind <= 100:
             self.sensorBuffer.append(self.sensorFrameData)
         self._time += step
@@ -161,11 +161,10 @@ class ExampleScenario(ScenarioTemplate):
                 mass=0.02,
             )
 
-        self.range_paths = ["/World/Tip/pad_4/LightBeam_Sensor"]
-        self._ls = _range_sensor.acquire_lightbeam_sensor_interface()
-        self._touch = RigidPrim(
+        self.range = "/World/Tip/pad_4/LightBeam_Sensor"
+        self.tactile = RigidPrim(
             prim_paths_expr="/World/Tip/pad_[1-7]",
-            name="fingertip",
+            name="finger_tactile",
             contact_filter_prim_paths_expr=["/World/Cube1"],
-            max_contact_count= 10,
+            max_contact_count= 7*5,
         )

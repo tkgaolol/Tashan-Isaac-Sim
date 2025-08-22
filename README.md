@@ -79,7 +79,7 @@ Before using the TS TACTILE extension, we recommend familiarizing yourself with 
 A: Primarily caused by network issues. We recommend downloading asset packs locally and configuring them as local assets, which can accelerate loading speeds by 10-100x compared to cloud loading.
 
 2. Q: How to add tactile sensors to my own model?<br>
-A: First import the tactile sensor module's USD file into your model. Remember the prim_path, Add the path to the range_paths and _touch variables in the ts.sensor.tactile/ts_tactile_extension_python/scenario.py file.
+A: First import the tactile sensor module's USD file into your model, define the self.tactile and self.range variables in the ts.sensor.tactile/ts_tactile_extension_python/scenario.py file, then call the TSsensor(self.tactile, self.range) function.
 
 3. Q: After enabling the extension and clicking LOAD, a "RuntimeError: Failed to find Rerun Viewer executable in PATH." error appears<br>
 A: This indicates incomplete visualization dependencies. Activate your conda environment and run pip install rerun-sdk==0.18.2, then restart the application.

@@ -76,7 +76,7 @@
 A：主要是网络问题，建议下载资产包到本地，修改配置作为本地资产，本地资产加载速度比云端快10-100倍。
 
 2. Q：如何在自己的模型中添加触觉传感器？<br>
-A：先将触觉传感器模组的 usd 文件导入模型中，记住 prim_path路径，在 ts.sensor.tactile/ts_tactile_extension_python/scenario.py 文件中 range_paths 和 _touch 变量中添加路径。
+A：将触觉传感器模组的 usd 文件导入模型中，在 ts.sensor.tactile/ts_tactile_extension_python/scenario.py 文件中定义 self.tactile 和 self.range 变量，然后调用TSsensor(self.tactile, self.range)函数。
 
 3. Q：启用扩展，点击LOAD，出现"RuntimeError: Failed to find Rerun Viewer executable in PATH."错误<br>
 A：可视化依赖安装不全，激活conda环境，pip install rerun-sdk==0.18.2，重新启动即可。

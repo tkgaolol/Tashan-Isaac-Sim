@@ -181,7 +181,7 @@ class UIBuilder:
         self._scenario.setup_scenario(self._articulation, self._cuboid)
         self.world.scene.add_default_ground_plane()
         self.world.scene.add(self._scenario._articulation)
-        self.world.scene.add(self._scenario._touch)
+        self.world.scene.add(self._scenario.tactile)
 
         # UI management
         self._scenario_state_btn.reset()
